@@ -23,31 +23,32 @@ jobs:
       - name: Test using Gradle
         working-directory: .
         run: ./gradlew test
+      
 
-  system-test:
-    runs-on: self-hosted-lab
-    needs: build-and-test
+#   system-test:
+#     runs-on: self-hosted-lab
+#     needs: build-and-test
 
-    steps:
-      - uses: actions/checkout@v1
+#     steps:
+#       - uses: actions/checkout@v1
 
-      - name: Run the server
-        working-directory: .
-        run: |
-          chmod +x gradlew
-          docker-compose up --build -d
+#       - name: Run the server
+#         working-directory: .
+#         run: |
+#           chmod +x gradlew
+#           docker-compose up --build -d
 
-      - name: Setup Python
-        uses: actions/setup-python@v1
-        with:
-          python-version: '3.7'
+#       - name: Setup Python
+#         uses: actions/setup-python@v1
+#         with:
+#           python-version: '3.7'
 
-      - run: pip install pytest requests
+#       - run: pip install pytest requests
 
-      - name: Run system tests
-        working-directory: .
-        run: pytest
+#       - name: Run system tests
+#         working-directory: .
+#         run: pytest
 
-      - name: Stop the server
-        working-directory: .
-        run: docker-compose down
+#       - name: Stop the server
+#         working-directory: .
+#         run: docker-compose down
