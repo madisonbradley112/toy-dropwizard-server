@@ -7,7 +7,7 @@ on:
 
 jobs:
   build-and-test:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted-lab
     steps:
       - uses: actions/checkout@v1
 
@@ -25,7 +25,7 @@ jobs:
         run: ./gradlew test
 
   system-test:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted-lab
     needs: build-and-test
 
     steps:
